@@ -1,0 +1,41 @@
+
+# Disclosed information
+.streamlit/secrets.toml
+.env
+*.env
+
+
+# Keep the repo clean of local virtual environments
+venv/
+env/
+.venv/
+bin/
+lib/
+share/
+Include/
+
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+
+# Mac-specific junk
+.DS_Store
+# Windows-specific junk
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+
+# If generating temporary audio files
+*.wav
+*.mp3
+
+# Streamlit, IDE
+.streamlit/config.toml
+.vscode/
+.idea/
