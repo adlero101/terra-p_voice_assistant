@@ -9,10 +9,16 @@ import os
 st.set_page_config(page_title="TERRA-P", page_icon="🌱")
 st.title("🌱 Therapeutic Enlightening Robust Retinue")
 
-# GitHub Models Token (The "Brain")
+try:
+    # This looks for GITHUB_TOKEN in your Streamlit Cloud Secrets or .streamlit/secrets.toml
+    token = st.secrets["GITHUB_TOKEN"]
+except Exception:
+    st.error("Missing GITHUB_TOKEN! Please add it to your Streamlit Secrets.")
+    st.stop()
+
 client = OpenAI(
     base_url="https://models.inference.ai.azure.com",
-    api_key=st.secrets.get("GITHUB_TOKEN")
+    api_key=token
 )
 
 # Initialize Session States
@@ -81,4 +87,4 @@ if audio_file and audio_file != st.session_state.last_processed_audio:
 # This remains outside the processing block to avoid being cut off by the rerun
 if len(st.session_state.messages) > 1 and st.session_state.messages[-1]["role"] == "assistant":
     if os.path.exists("response.mp3"):
-        st.audio("response.mp3", format="audio/mp3", autoplay=True)
+        st.audio("response.mp3", format="audio/mp3", autoplay=False)
